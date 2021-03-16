@@ -24,9 +24,22 @@ class TransactionListFragment : Fragment() {
 
     }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.profile ->findNavController().navigate(TransactionListFragmentDirections.actionTransactionListFragmentToSavedProfileFragment())
+        }
+        return true
+    }
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
         return inflater.inflate(R.layout.fragment_transaction_list, container, false)
     }
@@ -44,6 +57,8 @@ class TransactionListFragment : Fragment() {
             }
         }
 
+
+
 //        when user clicks the floating action button then navigating to next fragment
         add_transaction.setOnClickListener {
             findNavController().navigate(
@@ -52,6 +67,15 @@ class TransactionListFragment : Fragment() {
                 )
             )
         }
+
+//        val btn: Button= view?.findViewById(R.id.profile) ?:
+
+//        val saved:Button= this.view!!.findViewById(R.id.profile
+//        profile_btn.setOnClickListener {
+//            findNavController().navigate(
+//                TransactionListFragmentDirections.actionTransactionListFragmentToSavedProfileFragment()
+//            )
+//        }
 
         viewModel.transactions.observe(viewLifecycleOwner, Observer {
             (recyclerView.adapter as TransactionAdapter).submitList(it)

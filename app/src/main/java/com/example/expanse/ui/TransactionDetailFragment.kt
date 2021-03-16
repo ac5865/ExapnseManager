@@ -5,12 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.ViewParent
-import android.widget.Adapter
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.example.expanse.R
 import com.example.expanse.data.Transaction
@@ -37,14 +34,19 @@ class TransactionDetailFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+
+        // for calender
+
+
+
         val properties = mutableListOf<String>()
         TransactionType.values().forEach { properties.add(it.name) }
 
         val arrayAdapter =
             ArrayAdapter(activity!!, android.R.layout.simple_spinner_item, properties)
-        transaction_type.adapter = arrayAdapter
+        _type.adapter = arrayAdapter
 
-        transaction_type?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        _type?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?){
             }
 
@@ -60,35 +62,35 @@ class TransactionDetailFragment : Fragment() {
             it?.let { setData(it) }
         })
 
-        button_income.setOnClickListener {
-            saveTransaction()
+        income.setOnClickListener {
+            saveTransactionIncome()
         }
 
-        expense_button.setOnClickListener {
-            saveTransaction()
+        expense.setOnClickListener {
+            saveTransactionExpanse()
         }
     }
 
     private fun setData(transaction: Transaction){
-        etTransactionName.setText(transaction.transactionName)
+        TransactionName.setText(transaction.transactionName)
         etamount.setText(transaction.amount)
-        etselectdate.setText(transaction.date)
-        etfromdate.setText(transaction.fromDate)
-        ettodate.setText(transaction.toDate)
-        etselectcategory.setText(transaction.category)
-        etcomment.setText(transaction.comment)
-        transaction_type.setSelection(transaction.type)
+        dateselect.setText(transaction.date)
+        fromdate.setText(transaction.fromDate)
+        todate.setText(transaction.toDate)
+        selectcategory.setText(transaction.category)
+        comment.setText(transaction.comment)
+        _type.setSelection(transaction.type)
     }
 
-    private fun saveTransaction(){
-        val transactionName=etTransactionName.text.toString()
+    private fun saveTransactionIncome(){
+        val transactionName=TransactionName.text.toString()
         val amount=etamount.text.toString()
-        val selectDate=etselectcategory.text.toString()
-        val fromDate=etfromdate.text.toString()
-        val toDate=ettodate.text.toString()
-        val type=transaction_type.selectedItemPosition
-        val category=etselectcategory.text.toString()
-        val comment=etcomment.text.toString()
+        val selectDate=selectcategory.text.toString()
+        val fromDate=fromdate.text.toString()
+        val toDate=todate.text.toString()
+        val type=_type.selectedItemPosition
+        val category=selectcategory.text.toString()
+        val comment=comment.text.toString()
 
         val transaction=Transaction(viewModel.transactionId.value!!,
             transactionName,
@@ -98,7 +100,34 @@ class TransactionDetailFragment : Fragment() {
             toDate,
             category,
             type,
-            comment
+            comment,
+            1
+        )
+
+        viewModel.saveTransaction(transaction)
+        activity!!.onBackPressed()
+    }
+
+    private fun saveTransactionExpanse(){
+        val transactionName=TransactionName.text.toString()
+        val amount=etamount.text.toString()
+        val selectDate=selectcategory.text.toString()
+        val fromDate=fromdate.text.toString()
+        val toDate=todate.text.toString()
+        val type=_type.selectedItemPosition
+        val category=selectcategory.text.toString()
+        val comment=comment.text.toString()
+
+        val transaction=Transaction(viewModel.transactionId.value!!,
+            transactionName,
+            amount,
+            selectDate,
+            fromDate,
+            toDate,
+            category,
+            type,
+            comment,
+            0
         )
 
         viewModel.saveTransaction(transaction)

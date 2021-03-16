@@ -9,7 +9,7 @@ enum  class CategoryLevel{
 }
 
 enum class TransactionType{
-    Cash,Debit_Card,Credit_Card
+    Cash,DebitCard,CreditCard
 }
 
 
@@ -28,6 +28,7 @@ data class Transaction (
     @ColumnInfo(name="detail")
     val category: String,
     val type:Int,
-    val comment: String
+    val comment: String,
+    val plusMinus:Int
 
 )

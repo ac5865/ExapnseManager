@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/transactionListFragment">
+    app:startDestination="@id/loginFragment">
 
     <fragment
         android:id="@+id/transactionListFragment"
@@ -17,6 +17,9 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        <action
+            android:id="@+id/action_transactionListFragment_to_savedProfileFragment"
+            app:destination="@id/savedProfileFragment" />
     </fragment>
     <fragment
         android:id="@+id/transactionDetailFragment"
@@ -28,4 +31,18 @@
             app:argType="long"
             android:defaultValue="0L" />
     </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.expanse.ui.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_transactionListFragment"
+            app:destination="@id/transactionListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/savedProfileFragment"
+        android:name="com.example.expanse.ui.SavedProfileFragment"
+        android:label="fragment_saved_profile"
+        tools:layout="@layout/fragment_saved_profile" />
 </navigation>

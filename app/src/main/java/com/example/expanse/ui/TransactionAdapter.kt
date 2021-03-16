@@ -1,5 +1,7 @@
 package com.example.expanse.ui
 
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -10,6 +12,7 @@ import kotlinx.android.extensions.LayoutContainer
 import com.example.expanse.data.Transaction
 import kotlinx.android.synthetic.main.list_item.view.*
 import android.view.LayoutInflater
+import kotlinx.android.synthetic.main.list_item.*
 
 
 class TransactionAdapter(private val listener: (Long) -> Unit) :
@@ -38,8 +41,37 @@ class TransactionAdapter(private val listener: (Long) -> Unit) :
             with(transaction){
                 itemView.transaction_name.text=transaction.transactionName
                 itemView.transaction_date.text= transaction.date
-                itemView.transaction_mode.text=transaction.type.toString()
+                if(transaction.type==1){
+                    itemView.transaction_mode.text="Cash"
+                }
+
+                else if(transaction.type==2){
+                    itemView.transaction_mode.text="Debit Card"
+                }
+
+                else{
+                    itemView.transaction_mode.text="Credit Card"
+                }
+
                 itemView.transaction_amount.text=transaction.amount
+
+                itemView.transaction_date.text=transaction.date
+
+//                itemView.plus_minus.text= transaction.plusMinus.toString()
+
+                if(transaction.plusMinus==1){
+                    itemView.plus_minus.text="+"
+                    itemView.plus_minus.setTextColor(Color.GREEN)
+                    itemView.transaction_amount.setTextColor(Color.GREEN)
+                    itemView.type_view.setBackgroundColor(Color.GREEN)
+                }
+
+                else if(transaction.plusMinus==0){
+                    itemView.plus_minus.text="-"
+                    itemView.plus_minus.setTextColor(Color.RED)
+                    itemView.transaction_amount.setTextColor(Color.RED)
+                    itemView.type_view.setBackgroundColor((Color.RED))
+                }
             }
         }
     }
