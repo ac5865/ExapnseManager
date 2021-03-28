@@ -152,15 +152,18 @@ class TransactionListFragment : Fragment() {
         })
 
         viewModel.netAmountCash.observe(viewLifecycleOwner, Observer {
-            netCash.text = it.toString()
+            if (it != null)
+                netCash.text = it.toString()
         })
 
         viewModel.netAmountCredit.observe(viewLifecycleOwner, Observer {
-            netCredit.text = it.toString()
+            if (it != null)
+                netCredit.text = it.toString()
         })
 
         viewModel.netAmountDebit.observe(viewLifecycleOwner, Observer {
-            netDebit.text = it.toString()
+            if (it != null)
+                netDebit.text = it.toString()
         })
 
     }
