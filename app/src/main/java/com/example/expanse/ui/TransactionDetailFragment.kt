@@ -182,7 +182,7 @@ class TransactionDetailFragment : Fragment() {
             1
         )
         viewModel.saveTransaction(transaction)
-        activity!!.onBackPressed()
+        this.requireActivity().onBackPressed()
 
 //        } else {
 //            println("true $dateselect")
