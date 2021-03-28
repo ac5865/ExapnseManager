@@ -7,10 +7,10 @@ import androidx.room.*
 interface TransactionDetailDao {
 
     @Query("SELECT*FROM `transaction` WHERE `id`=:id")
-    fun getTransaction(id:Long):LiveData<Transaction>
+    fun getTransaction(id: Long): LiveData<Transaction>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insertTransaction(transaction: Transaction):Long
+    suspend fun insertTransaction(transaction: Transaction): Long
 
     @Update
     suspend fun updateTransaction(transaction: Transaction)

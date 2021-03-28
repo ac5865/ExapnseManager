@@ -27,14 +27,13 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <ScrollView
-        android:fillViewport="true"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
 
 
             <com.google.android.material.textfield.TextInputLayout
@@ -45,18 +44,18 @@
                 android:layout_marginStart="25dp"
                 android:layout_marginTop="72dp"
                 android:layout_marginEnd="25dp"
-                android:hint="Transaction Name"
+                android:hint="Transaction Name*"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                app:startIconDrawable="@drawable/ic_baseline_person_pin">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
-
 
 
             <com.google.android.material.textfield.TextInputLayout
@@ -67,18 +66,18 @@
                 android:layout_marginStart="25dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="25dp"
-                android:hint="Amount"
+                android:hint="Amount*"
                 app:layout_constraintEnd_toEndOf="@+id/TransactionName"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/TransactionName"
-                app:layout_constraintTop_toBottomOf="@+id/TransactionName">
+                app:layout_constraintTop_toBottomOf="@+id/TransactionName"
+                app:startIconDrawable="@drawable/ic_baseline_monetization">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="number" />
             </com.google.android.material.textfield.TextInputLayout>
-
 
 
             <com.google.android.material.textfield.TextInputLayout
@@ -90,13 +89,12 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="25dp"
                 android:clickable="true"
-                android:hint="Transaction Date"
-                app:startIconDrawable="@drawable/ic_baseline_calendar_today_24"
+                android:hint="Transaction Date*"
                 app:layout_constraintEnd_toEndOf="@+id/etamount"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/etamount"
                 app:layout_constraintTop_toBottomOf="@+id/etamount"
-                >
+                app:startIconDrawable="@drawable/ic_baseline_calendar_today_24">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
@@ -122,8 +120,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
                 android:layout_marginTop="16dp"
-                android:hint="From Date"
                 android:editable="false"
+                android:hint="From Date"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -156,15 +154,15 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="25dp"
+                android:editable="false"
                 android:hint="To Date"
-                app:startIconDrawable="@drawable/ic_baseline_calendar_today_24"
                 app:layout_constraintBottom_toBottomOf="@+id/fromdate"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
-                android:editable="false"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/fromdate"
-                app:layout_constraintVertical_bias="0.0">
+                app:layout_constraintVertical_bias="0.0"
+                app:startIconDrawable="@drawable/ic_baseline_calendar_today_24">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
@@ -183,7 +181,6 @@
                 app:layout_constraintHorizontal_bias="0.023"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/fromdate" />
-
 
 
             <com.google.android.material.textfield.TextInputLayout
@@ -215,13 +212,13 @@
                 android:layout_marginStart="25dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="25dp"
-                android:hint="Comment"
-                app:startIconDrawable="@drawable/ic_baseline_comment"
                 android:gravity="center"
+                android:hint="Comment"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/transactiontype">
+                app:layout_constraintTop_toBottomOf="@+id/transactiontype"
+                app:startIconDrawable="@drawable/ic_baseline_comment">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
@@ -234,6 +231,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="24dp"
+                android:backgroundTint="@color/FavRed"
                 android:text="Expense"
                 android:textSize="25sp"
                 app:layout_constraintBottom_toBottomOf="@+id/income"
@@ -245,7 +243,8 @@
                 android:id="@+id/income"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="70dp"
+                android:layout_marginTop="32dp"
+                android:backgroundTint="@color/green"
                 android:text="income"
                 android:textSize="25sp"
                 app:layout_constraintEnd_toStartOf="@+id/expense"

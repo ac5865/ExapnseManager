@@ -7,8 +7,6 @@
     tools:context=".ui.MainActivity">
 
 
-
-
     <fragment
         android:id="@+id/fragment"
         android:name="androidx.navigation.fragment.NavHostFragment"

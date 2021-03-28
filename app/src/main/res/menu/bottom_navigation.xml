@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
         android:id="@+id/daily"
-        android:title="Daily Expanse"
-        android:icon="@drawable/ic_baseline_calendar_today_24"/>
+        android:icon="@drawable/ic_baseline_calendar_today_24"
+        android:title="Daily Expanse" />
 
     <item
         android:id="@+id/add_expanse"
-        android:title="Add Expanse"
-        android:icon="@drawable/ic_baseline_add_circle_outline_24"/>
+        android:icon="@drawable/ic_baseline_add_circle_outline_24"
+        android:title="Add Expanse" />
 
     <item
         android:id="@+id/monthly"
-        android:title="Monthly Expase"
-        android:icon="@drawable/ic_baseline_calendar_view_day_24"/>
+        android:icon="@drawable/ic_baseline_calendar_view_day_24"
+        android:title="Monthly Expase" />
 </menu>

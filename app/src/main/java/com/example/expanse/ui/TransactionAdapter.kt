@@ -1,27 +1,27 @@
 package com.example.expanse.ui
 
-import android.content.res.ColorStateList
 import android.graphics.Color
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.expanse.R
-import androidx.recyclerview.widget.ListAdapter
-import kotlinx.android.extensions.LayoutContainer
 import com.example.expanse.data.Transaction
+import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.list_item.view.*
-import android.view.LayoutInflater
-import kotlinx.android.synthetic.main.list_item.*
 
 
 class TransactionAdapter(private val listener: (Long) -> Unit) :
     ListAdapter<Transaction, TransactionAdapter.ViewHolder>(DiffCallback()) {
 
-    override fun onCreateViewHolder(parent: ViewGroup,
-                                    viewType: Int): TransactionAdapter.ViewHolder {
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): TransactionAdapter.ViewHolder {
         val itemLayout = LayoutInflater.from(parent.context)
-            .inflate(R.layout.list_item,parent,false)
+            .inflate(R.layout.list_item, parent, false)
         return ViewHolder(itemLayout)
     }
 
@@ -37,37 +37,32 @@ class TransactionAdapter(private val listener: (Long) -> Unit) :
             }
         }
 
-        fun bind (transaction: Transaction){
-            with(transaction){
-                itemView.transaction_name.text=transaction.transactionName
-                itemView.transaction_date.text= "20/10/2020"
-                if(transaction.type.equals(1)){
-                    itemView.transaction_mode.text="Cash"
+        fun bind(transaction: Transaction) {
+            with(transaction) {
+                itemView.transaction_name.text = transaction.transactionName
+//                itemView.transaction_date.text = "20/10/2020"
+
+                if (transaction.type.equals(0)) {
+                    itemView.transaction_mode.text = "Cash"
+                } else if (transaction.type.equals(1)) {
+                    itemView.transaction_mode.text = "Debit Card"
+                } else {
+                    itemView.transaction_mode.text = "Credit Card"
                 }
 
-                else if(transaction.type.equals(2)){
-                    itemView.transaction_mode.text="Debit Card"
-                }
+                itemView.transaction_amount.text = transaction.amount.toString()
 
-                else{
-                    itemView.transaction_mode.text="Credit Card"
-                }
-
-                itemView.transaction_amount.text=transaction.amount.toString()
-
-                itemView.transaction_date.text=transaction.date
+                itemView.transaction_date.text = transaction.date
 
 //                itemView.plus_minus.text= transaction.plusMinus.toString()
 
-                if(transaction.plusMinus==1){
-                    itemView.plus_minus.text="+"
+                if (transaction.plusMinus == 1) {
+                    itemView.plus_minus.text = "+"
                     itemView.plus_minus.setTextColor(Color.parseColor("#ADFF2F"))
                     itemView.transaction_amount.setTextColor(Color.parseColor("#ADFF2F"))
                     itemView.type_view.setBackgroundColor(Color.parseColor("#ADFF2F"))
-                }
-
-                else if(transaction.plusMinus==0){
-                    itemView.plus_minus.text="-"
+                } else if (transaction.plusMinus == 0) {
+                    itemView.plus_minus.text = "-"
                     itemView.plus_minus.setTextColor(Color.parseColor("#ff726f"))
                     itemView.transaction_amount.setTextColor(Color.parseColor("#ff726f"))
                     itemView.type_view.setBackgroundColor(Color.parseColor("#ff726f"))

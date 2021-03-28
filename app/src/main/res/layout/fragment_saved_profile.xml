@@ -28,29 +28,28 @@
 
 
     <ScrollView
-        android:fillViewport="true"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-<!--                    <EditText-->
-<!--                        android:id="@+id/name"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_marginStart="32dp"-->
-<!--                        android:layout_marginTop="225dp"-->
-<!--                        android:layout_marginEnd="32dp"-->
-<!--                        android:hint="name"-->
-<!--                        android:gravity="center"-->
-<!--                        android:textSize="25sp"-->
-<!--                        app:layout_constraintEnd_toEndOf="parent"-->
-<!--                        app:layout_constraintStart_toStartOf="parent"-->
-<!--                        app:layout_constraintTop_toTopOf="parent" />-->
+            <!--                    <EditText-->
+            <!--                        android:id="@+id/name"-->
+            <!--                        android:layout_width="match_parent"-->
+            <!--                        android:layout_height="wrap_content"-->
+            <!--                        android:layout_marginStart="32dp"-->
+            <!--                        android:layout_marginTop="225dp"-->
+            <!--                        android:layout_marginEnd="32dp"-->
+            <!--                        android:hint="name"-->
+            <!--                        android:gravity="center"-->
+            <!--                        android:textSize="25sp"-->
+            <!--                        app:layout_constraintEnd_toEndOf="parent"-->
+            <!--                        app:layout_constraintStart_toStartOf="parent"-->
+            <!--                        app:layout_constraintTop_toTopOf="parent" />-->
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/name_saved"
@@ -148,9 +147,9 @@
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="140dp"
                 android:layout_marginEnd="32dp"
+                android:gravity="center"
                 android:text="Your Budget"
                 android:textColor="@color/black"
-                android:gravity="center"
                 android:textSize="32sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.493"

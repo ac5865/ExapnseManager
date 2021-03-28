@@ -2,7 +2,6 @@ package com.example.expanse.ui
 
 import android.app.DatePickerDialog
 import android.content.Context
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -17,8 +16,6 @@ import com.example.expanse.R
 import com.example.expanse.data.Transaction
 import com.example.expanse.data.TransactionType
 import kotlinx.android.synthetic.main.fragment_transaction_detail.*
-import kotlinx.android.synthetic.main.fragment_transaction_detail.view.*
-import kotlinx.android.synthetic.main.list_item.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -75,7 +72,7 @@ class TransactionDetailFragment : Fragment() {
         TransactionType.values().forEach { properties.add(it.name) }
 
         val arrayAdapter =
-            ArrayAdapter(activity!!, android.R.layout.simple_spinner_item, properties)
+            ArrayAdapter(this.requireActivity(), android.R.layout.simple_spinner_item, properties)
         _type.adapter = arrayAdapter
 
         _type?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -136,7 +133,7 @@ class TransactionDetailFragment : Fragment() {
         viewModel.deleteTransaction()
 
 
-        activity!!.onBackPressed()
+        this.requireActivity().onBackPressed()
     }
 
     private fun setData(transaction: Transaction) {
@@ -145,7 +142,7 @@ class TransactionDetailFragment : Fragment() {
         dateselect.editText?.setText(transaction.date)
         fromdate.editText?.setText(transaction.fromDate)
         todate.editText?.setText(transaction.toDate)
-        selectcategory.setText(transaction.category)
+        selectcategory.text = transaction.category
         comment.editText?.setText(transaction.comment)
         _type.setSelection(transaction.type)
     }
@@ -172,7 +169,8 @@ class TransactionDetailFragment : Fragment() {
 //
 //            sharedPreferences.edit().putString("Budget", value.toString()).apply()
 
-        val transaction = Transaction(viewModel.transactionId.value!!,
+        val transaction = Transaction(
+            viewModel.transactionId.value!!,
             transactionName,
             amount.toFloat(),
             selectDate,
@@ -213,8 +211,9 @@ class TransactionDetailFragment : Fragment() {
 
 //        sending values to the viewmodel
 
-        val vary:Float=amount.toFloat()*(-1)
-        val transaction = Transaction(viewModel.transactionId.value!!,
+        val vary: Float = amount.toFloat() * (-1)
+        val transaction = Transaction(
+            viewModel.transactionId.value!!,
             transactionName,
             vary,
             selectDate,
@@ -227,7 +226,7 @@ class TransactionDetailFragment : Fragment() {
         )
 
         viewModel.saveTransaction(transaction)
-        activity!!.onBackPressed()
+        this.requireActivity().onBackPressed()
     }
 
 

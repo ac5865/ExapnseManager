@@ -5,7 +5,6 @@ import android.content.SharedPreferences
 import android.graphics.Color
 import android.os.Bundle
 import android.view.*
-import androidx.core.view.isInvisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -14,7 +13,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.expanse.R
 import com.example.expanse.R.id.*
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.fragment_transaction_list.*
 
 
@@ -65,18 +63,8 @@ class TransactionListFragment : Fragment() {
         setNetBalance(sharedPreferences, editor)
 
 //        to set the name in the recycler view fragment
-        name_text.text=sharedPreferences.getString("Name","illuminati").toString()
+        name_text.text = sharedPreferences.getString("Name", "illuminati").toString()
 
-/* when user clicks the floating action button then navigating to next fragment */
-//        add_transaction.setOnClickListener {
-//            findNavController().navigate(
-//                TransactionListFragmentDirections.actionTransactionListFragmentToTransactionDetailFragment(
-//                    0,
-//                )
-//            )
-//        }
-
-//        add_transaction.isInvisible
 
 /* for tool bar on click listener */
         addAppBar.setOnMenuItemClickListener { menuItem ->
@@ -95,15 +83,19 @@ class TransactionListFragment : Fragment() {
             }
         }
 
-        bottomNavigationView.setOnNavigationItemSelectedListener { it->
-            when(it.itemId){
+        bottomNavigationView.setOnNavigationItemSelectedListener { it ->
+            when (it.itemId) {
 
                 daily -> {
                     true
                 }
 
                 add_expanse -> {
-                    findNavController().navigate(TransactionListFragmentDirections.actionTransactionListFragmentToTransactionDetailFragment(0))
+                    findNavController().navigate(
+                        TransactionListFragmentDirections.actionTransactionListFragmentToTransactionDetailFragment(
+                            0
+                        )
+                    )
                     true
                 }
 
@@ -151,12 +143,24 @@ class TransactionListFragment : Fragment() {
 
                 editor.putString("Budget", remainingAmount.toString())
                 amount_remaining.text = remainingAmount.toString()
-                if(remainingAmount >= 0)
+                if (remainingAmount >= 0)
                     amount_remaining.setTextColor(Color.parseColor("#ADFF2F"))
-                else if(remainingAmount < 0){
+                else if (remainingAmount < 0) {
                     amount_remaining.setTextColor(Color.parseColor("#ff726f"))
                 }
             }
+        })
+
+        viewModel.netAmountCash.observe(viewLifecycleOwner, Observer {
+            netCash.text = it.toString()
+        })
+
+        viewModel.netAmountCredit.observe(viewLifecycleOwner, Observer {
+            netCredit.text = it.toString()
+        })
+
+        viewModel.netAmountDebit.observe(viewLifecycleOwner, Observer {
+            netDebit.text = it.toString()
         })
 
     }

@@ -1,5 +1,6 @@
 package com.example.expanse.ui
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,7 @@ import com.example.expanse.R
 import com.example.expanse.data.Transaction
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.list_item.*
+import kotlinx.android.synthetic.main.list_item.view.*
 
 
 class DayTransactionAdapter(private val listener: (String) -> Unit) :
@@ -43,11 +45,29 @@ class DayTransactionAdapter(private val listener: (String) -> Unit) :
 
         fun bind(transaction: Transaction) {
             with(transaction) {
-                transaction_name.text=transaction.transactionName
-                transaction_date.text=transaction.date
-                transaction_amount.text=transaction.amount.toString()
-                transaction_mode.isVisible=false
-                dot.isVisible=false
+                transaction_name.text = transaction.transactionName
+                transaction_date.text = transaction.date
+                transaction_amount.text = transaction.amount.toString()
+                transaction_mode.isVisible = false
+
+
+                if (transaction.plusMinus == 1) {
+
+                    itemView.plus_minus.text = "+"
+                    itemView.plus_minus.setTextColor(Color.parseColor("#ADFF2F"))
+                    itemView.transaction_amount.setTextColor(Color.parseColor("#ADFF2F"))
+                    itemView.type_view.setBackgroundColor(Color.parseColor("#ADFF2F"))
+
+                } else if (transaction.plusMinus == 0) {
+
+                    itemView.plus_minus.text = "-"
+                    itemView.plus_minus.setTextColor(Color.parseColor("#ff726f"))
+                    itemView.transaction_amount.setTextColor(Color.parseColor("#ff726f"))
+                    itemView.type_view.setBackgroundColor(Color.parseColor("#ff726f"))
+
+                }
+                textView3.visibility = View.INVISIBLE
+                dot.visibility = View.INVISIBLE
             }
         }
     }
