@@ -19,10 +19,10 @@
     <color name="color_white">#ededf2</color>
     <color name="color_two">#E3E0E0</color>
 
-    <color name="R">#FFA726</color>
-    <color name="Python">#66BB6A</color>
-    <color name="CPP">#EF5350</color>
-    <color name="Java">#29B6F6</color>
+    <color name="R">#52D726</color>
+    <color name="Python">#FFEC00</color>
+    <color name="CPP">#FF7300</color>
+    <color name="Java">#FF0000</color>
 
     <color name="FavRed">#ff726f</color>
     <color name="FavGreen">#ADFF2F</color>

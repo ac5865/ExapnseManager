@@ -14,12 +14,12 @@ android {
 
     defaultConfig {
         applicationId "com.example.expanse"
-        minSdkVersion 18
+        minSdkVersion 19
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
 
     buildTypes {
@@ -76,7 +76,6 @@ dependencies {
     implementation 'androidx.cardview:cardview:1.0.0'
 
     // Chart and graph library
-    implementation 'com.github.blackfizz:eazegraph:1.2.5l@aar'
-    implementation 'com.nineoldandroids:library:2.4.0'
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 
 }

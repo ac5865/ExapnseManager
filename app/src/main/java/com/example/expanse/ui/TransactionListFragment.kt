@@ -13,7 +13,11 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.expanse.R
 import com.example.expanse.R.id.*
+import com.github.mikephil.charting.data.PieData
+import com.github.mikephil.charting.data.PieDataSet
+import com.github.mikephil.charting.data.PieEntry
 import kotlinx.android.synthetic.main.fragment_transaction_list.*
+import java.util.*
 
 
 class TransactionListFragment : Fragment() {
@@ -54,6 +58,11 @@ class TransactionListFragment : Fragment() {
                 )
             }
         }
+
+
+//        for pichart in the side of netbalance
+
+
 
 /* to update to net balace remaining after every addition in the recycler view  and always use this
  this method to update the shared preference rather then the method used in login fragment */
@@ -117,6 +126,55 @@ class TransactionListFragment : Fragment() {
 //        val netAmount = sharedPreferencesp.getString("Budget","0")
 //
 //        amount_remaining.text=netAmount
+
+
+    }
+
+    private fun setupPieChart(){
+
+        // setup Pie entries
+        val pieEntries = arrayListOf<PieEntry>()
+        var first:Float=amount_remaining.text.toString().toFloat()
+        var second:Float=netCash.text.toString().toFloat()
+        var third:Float =netCredit.text.toString().toFloat()
+        var forth:Float = netDebit.text.toString().toFloat()
+
+        pieEntries.add(PieEntry(first))
+        pieEntries.add(PieEntry(second))
+        pieEntries.add(PieEntry(third))
+        pieEntries.add(PieEntry(forth))
+// setup Pie chart animations
+        pieChart.animateXY(1000,1000)
+
+        // setup PieChart Entries Colors
+        val pieDataSet = PieDataSet(pieEntries,"This is Pie Chart Label")
+        pieDataSet.setColors(
+            resources.getColor(R.color.R),
+            resources.getColor(R.color.Java),
+            resources.getColor(R.color.CPP),
+            resources.getColor(R.color.Python)
+        )
+
+        // setup pie data set in piedata
+        val pieData = PieData(pieDataSet)
+
+        // setip text in pieChart centre
+        pieChart.centerText="Expanses"
+        pieChart.setCenterTextColor(resources.getColor(android.R.color.black))
+        pieChart.setCenterTextSize(15f)
+
+        // hide the piechart entries tags
+        pieChart.legend.isEnabled = false
+
+//        now hide the description of piechart
+        pieChart.description.isEnabled=false
+        pieChart.description.text="Expanses"
+
+        pieChart.holeRadius = 40f
+        // this enabled the values on each pieEntry
+        pieData.setDrawValues(true)
+
+        pieChart.data= pieData
     }
 
 
@@ -143,6 +201,7 @@ class TransactionListFragment : Fragment() {
 
                 editor.putString("Budget", remainingAmount.toString())
                 amount_remaining.text = remainingAmount.toString()
+                setupPieChart()
                 if (remainingAmount >= 0)
                     amount_remaining.setTextColor(Color.parseColor("#ADFF2F"))
                 else if (remainingAmount < 0) {
@@ -152,18 +211,25 @@ class TransactionListFragment : Fragment() {
         })
 
         viewModel.netAmountCash.observe(viewLifecycleOwner, Observer {
-            if (it != null)
+            if (it != null) {
                 netCash.text = it.toString()
+                setupPieChart()
+            }
+
         })
 
         viewModel.netAmountCredit.observe(viewLifecycleOwner, Observer {
-            if (it != null)
+            if (it != null) {
                 netCredit.text = it.toString()
+                setupPieChart()
+            }
         })
 
         viewModel.netAmountDebit.observe(viewLifecycleOwner, Observer {
-            if (it != null)
+            if (it != null) {
                 netDebit.text = it.toString()
+                setupPieChart()
+            }
         })
 
     }
